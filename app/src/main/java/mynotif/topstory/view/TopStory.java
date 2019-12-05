@@ -59,8 +59,9 @@ public class TopStory extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<ItemResponse> call, Response<ItemResponse> response) {
                             String title= response.body().getTitle().toString();
-                            String url = response.body().getUrl().toString();
-                            list.add(new Item(title,url));
+                            String descendants = response.body().getDescendants().toString();
+                            String score = response.body().getScore().toString();
+                            list.add(new Item(title,descendants,score));
                             StoryAdapter adapter=new StoryAdapter(list);
                             recycleStories.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
